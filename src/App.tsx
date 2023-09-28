@@ -13,13 +13,32 @@ const App = () => {
     }
   `
 
+  const Container__text = styled.div`
+    text-align: center;
+    margin:1rem 0;
+    h1{
+      font-size: 3rem;
+      color: #e3e3e3;
+      font-family: 'bebas neue';
+    }
+    p{
+      width: 50%;
+      margin: 0 auto;
+      color: #e3e3e3;
+      opacity: 0.6;
+    }
+
+  `
+
   return (
     <>
       <div className="container">
-        <div className="container__text">
+        <Container__text>
           <h1>Consulte todas as informações do seu CNPJ de forma gratuíta</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate dicta, consequuntur atque accusantium temporibus dolorum recusandae alias enim maxime eius sequi ipsa, dignissimos, ducimus vitae labore! Accusantium sint magnam modi.</p>
-        </div>
+          <p>Aqui no cQuery você pode consultar a situação do seu CNPJ e verificar se seus dados estão desatualizados ou em divergência. </p>
+           <p>Esteja você no controle dos seus dados !</p>
+        </Container__text>
+
         <Container__article>
           <QueryBox />
           <Button />

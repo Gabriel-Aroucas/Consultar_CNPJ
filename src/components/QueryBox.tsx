@@ -9,7 +9,7 @@ const QueryBox = () => {
 
     return (
         <Styled__queryBox>
-            <input type="number" placeholder="Informe aqui o CNPJ" />
+            <input type="tel" name="cnpj" placeholder="Informe aqui o CNPJ" />
         </Styled__queryBox>
     )
 }
