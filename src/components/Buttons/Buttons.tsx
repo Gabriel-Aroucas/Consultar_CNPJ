@@ -14,6 +14,7 @@ cursor: pointer;
 `
 
 const Buttons = () => {
+
   return (
     <QueryButton>Consultar</QueryButton>
   )

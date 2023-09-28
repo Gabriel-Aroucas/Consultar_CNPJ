@@ -6,26 +6,26 @@ import { faClose } from "@fortawesome/free-solid-svg-icons"
 interface Types {
     nome_fantasia: string,
     razao_social: string,
-    cnae_fiscal_descricao:string,
-    descricao_situacao_cadastral:string,
-    porte:string,
-    descricao_tipo_de_logradouro:string,
-    logradouro:string,
-    bairro:string,
-    municipio:string,
-    cep:string,
-    ddd_telefone_1:string,
-    ddd_telefone_2:string,
-    data_inicio_atividade:string,
-    data_exclusao_do_mei:string,
+    cnae_fiscal_descricao: string,
+    descricao_situacao_cadastral: string,
+    porte: string,
+    descricao_tipo_de_logradouro: string,
+    logradouro: string,
+    bairro: string,
+    municipio: string,
+    cep: string,
+    ddd_telefone_1: string,
+    ddd_telefone_2: string,
+    data_inicio_atividade: string,
+    data_exclusao_do_mei: string,
 }
 const StyleModal = styled.section`
     position: absolute;
-    display: grid;
+    display: none;
     grid-template-columns: repeat(auto-fill,minmax(350px,1fr));
     top: 50%;
     left: 50%;
-    width: 900px;
+    width: 70%;
     height: 80vh;
     transform: translate(-50%,-50%);
     text-align: center;
@@ -35,21 +35,34 @@ const StyleModal = styled.section`
     .close_icon{
         position: absolute;
         right: 1rem;
+        top: 1rem;
+        cursor: pointer;
     }
     article{
         margin:10px 0;
     }
 `
-const Modal = ({ 
-    nome_fantasia, razao_social,cnae_fiscal_descricao,descricao_situacao_cadastral,
-    porte,descricao_tipo_de_logradouro,logradouro,bairro,municipio,cep,ddd_telefone_1,
-    ddd_telefone_2,data_inicio_atividade,data_exclusao_do_mei
- }: Types) => {
+const Modal = ({
+    nome_fantasia, razao_social, cnae_fiscal_descricao, descricao_situacao_cadastral,
+    porte, descricao_tipo_de_logradouro, logradouro, bairro, municipio, cep, ddd_telefone_1,
+    ddd_telefone_2, data_inicio_atividade, data_exclusao_do_mei
+}: Types) => {
+
+    const close_modal = () => {
+        const container = document.querySelector(".containerModal") as HTMLElement
+        container.style.opacity='0';
+        container.style.transition='1s'
+        setTimeout(() => {
+        container.style.display='none'
+        }, 1000);
+
+    }
+
 
     return (
-        <StyleModal>
+        <StyleModal className="containerModal">
             <div className="close_icon">
-                <FontAwesomeIcon icon={faClose} />
+                <i onClick={close_modal}> <FontAwesomeIcon icon={faClose} /></i>
             </div>
             <article className="nome_fantasia">
                 <h2>Nome Fantasia</h2>
@@ -78,7 +91,7 @@ const Modal = ({
 
             <article className="endereco">
                 <h2>Endereço</h2>
-                <p>{descricao_tipo_de_logradouro+' '+logradouro + ' '+ bairro + ' - ' + municipio}</p>
+                <p>{descricao_tipo_de_logradouro + ' ' + logradouro + ' ' + bairro + ' - ' + municipio}</p>
             </article>
 
             <article className="cep">
@@ -106,7 +119,7 @@ const Modal = ({
                 <p>{data_exclusao_do_mei}</p>
             </article>
 
-            
+
 
         </StyleModal>
     )
