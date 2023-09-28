@@ -1,0 +1,19 @@
+body {
+    background: rgb(35, 35, 159);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container__text {
+    border: 1px solid red;
+    text-align: center;
+    h1{
+        font-size: 3rem;
+    }
+    p{
+        width: 50%;
+        color: #fff;
+    }
+}

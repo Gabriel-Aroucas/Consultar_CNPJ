@@ -1,0 +1,19 @@
+body {
+  background: rgb(35, 35, 159);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container__text {
+  border: 1px solid red;
+  text-align: center;
+}
+.container__text h1 {
+  font-size: 3rem;
+}
+.container__text p {
+  width: 50%;
+  color: #fff;
+}/*# sourceMappingURL=App.css.map */
