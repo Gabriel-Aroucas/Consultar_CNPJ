@@ -21,13 +21,17 @@ interface Types {
 }
 const StyleModal = styled.section`
     position: absolute;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(350px,1fr));
     top: 50%;
     left: 50%;
     width: 900px;
+    height: 80vh;
     transform: translate(-50%,-50%);
     text-align: center;
     background-color: #eaeaea;
     padding: 1rem;
+    overflow: scroll;
     .close_icon{
         position: absolute;
         right: 1rem;
@@ -72,24 +76,9 @@ const Modal = ({
                 <p>{porte}</p>
             </article>
 
-            <article className="descricao_tipo_de_logradouro">
-                <h2>Descricao tipo de logradouro</h2>
-                <p>{descricao_tipo_de_logradouro}</p>
-            </article>
-
-            <article className="logradouro">
-                <h2>Logradouro</h2>
-                <p>{logradouro}</p>
-            </article>
-
-            <article className="bairro">
-                <h2>Bairro</h2>
-                <p>{bairro}</p>
-            </article>
-
-            <article className="municipio">
-                <h2>Município</h2>
-                <p>{municipio}</p>
+            <article className="endereco">
+                <h2>Endereço</h2>
+                <p>{descricao_tipo_de_logradouro+' '+logradouro + ' '+ bairro + ' - ' + municipio}</p>
             </article>
 
             <article className="cep">

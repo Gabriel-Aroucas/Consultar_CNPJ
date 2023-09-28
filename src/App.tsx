@@ -28,7 +28,20 @@ const App = () => {
 
   axios.get(`https://brasilapi.com.br/api/cnpj/v1/51121858000145`)
     .then(response => { 
-      
+      setnome_fantasia(response.data.nome_fantasia ? response.data.nome_fantasia : 'Não identificado')
+      setrazao_social(response.data.razao_social ? response.data.razao_social : 'Não identificado')
+      setcnae_fiscal_descricao(response.data.cnae_fiscal_descricao)
+      setdescricao_situacao_cadastral(response.data.descricao_situacao_cadastral)
+      setporte(response.data.porte)
+      setdescricao_tipo_de_logradouro(response.data.descricao_tipo_de_logradouro)
+      setlogradouro(response.data.logradouro)
+      setbairro(response.data.bairro)
+      setmunicipio(response.data.municipio)
+      setcep(response.data.cep)
+      setddd_telefone_1(response.data.ddd_telefone_1 ? response.data.ddd_telefone_1:'Não cadastrado')
+      setddd_telefone_2(response.data.ddd_telefone_2 ? response.data.ddd_telefone_2:'Não cadastrado')
+      setdata_inicio_atividade(response.data.data_inicio_atividade)
+      setdata_exclusao_do_mei(response.data.data_exclusao_do_mei)
      })
 
 
@@ -68,6 +81,22 @@ const App = () => {
           <Button />
         </Container__article>
       
+        <Modal 
+        nome_fantasia={nome_fantasia}
+        razao_social={razao_social}
+        cnae_fiscal_descricao={cnae_fiscal_descricao}
+        descricao_situacao_cadastral={descricao_situacao_cadastral}
+        porte={porte}
+        descricao_tipo_de_logradouro={descricao_tipo_de_logradouro}
+        logradouro={logradouro}
+        bairro={bairro}
+        municipio={municipio}
+        cep={cep}
+        ddd_telefone_1={ddd_telefone_1}
+        ddd_telefone_2={ddd_telefone_2}
+        data_inicio_atividade={data_inicio_atividade}
+        data_exclusao_do_mei={data_exclusao_do_mei}
+        />
       </section>
     </>
   )
