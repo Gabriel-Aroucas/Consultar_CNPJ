@@ -58,6 +58,11 @@ const App = () => {
           setdata_inicio_atividade(response.data.data_inicio_atividade)
           setdata_exclusao_do_mei(response.data.data_exclusao_do_mei ? response.data.data_exclusao_do_mei : 'CNPJ ATIVO')
         })
+        .then(() => {
+          const container = document.querySelector(".containerModal") as HTMLElement
+          container.style.display = 'grid';
+          container.style.opacity = '1';
+        })
     }
 
   }
