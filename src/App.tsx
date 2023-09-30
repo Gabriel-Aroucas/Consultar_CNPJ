@@ -3,84 +3,65 @@ import QueryBox from './components/QueryBox'
 import Button from './components/Buttons/Buttons.tsx'
 import { styled } from 'styled-components'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Modal from './components/modal/Modal.tsx'
-
 const App = () => {
   const [nome_fantasia, setnome_fantasia] = useState('')
   const [razao_social, setrazao_social] = useState('')
   const [cnae_fiscal_descricao, setcnae_fiscal_descricao] = useState('')
   const [descricao_situacao_cadastral, setdescricao_situacao_cadastral] = useState('')
   const [porte, setporte] = useState('')
-
   const [descricao_tipo_de_logradouro, setdescricao_tipo_de_logradouro] = useState('')
   const [logradouro, setlogradouro] = useState('')
   const [bairro, setbairro] = useState('')
   const [municipio, setmunicipio] = useState('')
   const [cep, setcep] = useState('')
-
   const [ddd_telefone_1, setddd_telefone_1] = useState('')
   const [ddd_telefone_2, setddd_telefone_2] = useState('')
-
   const [data_inicio_atividade, setdata_inicio_atividade] = useState('')
   const [data_exclusao_do_mei, setdata_exclusao_do_mei] = useState('')
-
-  const [cnpj, setcnpj] = useState('')
-
 
 
   const consulta = () => {
 
-    axios.get(`https://brasilapi.com.br/api/cnpj/v1/${cnpj}`)
-      .then(response => {
-        setnome_fantasia(response.data.nome_fantasia ? response.data.nome_fantasia : 'Não identificado')
-        setrazao_social(response.data.razao_social ? response.data.razao_social : 'Não identificado')
-        setcnae_fiscal_descricao(response.data.cnae_fiscal_descricao)
-        setdescricao_situacao_cadastral(response.data.descricao_situacao_cadastral)
-        setporte(response.data.porte)
-        setdescricao_tipo_de_logradouro(response.data.descricao_tipo_de_logradouro)
-        setlogradouro(response.data.logradouro)
-        setbairro(response.data.bairro)
-        setmunicipio(response.data.municipio)
-        setcep(response.data.cep)
-        setddd_telefone_1(response.data.ddd_telefone_1 ? response.data.ddd_telefone_1 : 'Não cadastrado')
-        setddd_telefone_2(response.data.ddd_telefone_2 ? response.data.ddd_telefone_2 : 'Não cadastrado')
-        setdata_inicio_atividade(response.data.data_inicio_atividade)
-        setdata_exclusao_do_mei(response.data.data_exclusao_do_mei ? response.data.data_exclusao_do_mei : 'CNPJ ATIVO')
-
-        console.log(response.data)
-      })
-      .catch(e => {
-        console.log(e)
-        if (e) {
-          const container = document.querySelector(".containerModal") as HTMLElement
-          container.style.display = 'none';
-          setTimeout(() => {
-            alert('CNPJ Não encontrado')
-          }, 200);
-        }
-      })
-
-
 
     const Get_Input__QueryBox = document.querySelector("#queryBox") as HTMLInputElement;
     const Input__QueryBox = Get_Input__QueryBox.value.replace(/[^0-9]/g, '');
-    setcnpj(Input__QueryBox)
 
-    if (Input__QueryBox.length < 14) {
-      // alert('Você precisa informar o CNPJ completo')
-
-    } else {
+    if (Input__QueryBox.length > 0 && Input__QueryBox.length < 14) {
       const container = document.querySelector(".containerModal") as HTMLElement
-      container.style.display = 'grid'
+      container.style.display = 'none';
       setTimeout(() => {
-        container.style.opacity = '1';
-        container.style.transition = '1s'
-      }, 1000);
+        alert('Digite o CNPJ completo')
+      }, 200);
+    } else if (Input__QueryBox.length == 0) {
+      const container = document.querySelector(".containerModal") as HTMLElement
+      container.style.display = 'none';
+      setTimeout(() => {
+        alert('Digite o número do CNPJ')
+      }, 200);
+    } else {
+      axios.get(`https://brasilapi.com.br/api/cnpj/v1/${Input__QueryBox}`)
+        .then(response => {
+          setnome_fantasia(response.data.nome_fantasia ? response.data.nome_fantasia : 'Não identificado')
+          setrazao_social(response.data.razao_social ? response.data.razao_social : 'Não identificado')
+          setcnae_fiscal_descricao(response.data.cnae_fiscal_descricao)
+          setdescricao_situacao_cadastral(response.data.descricao_situacao_cadastral)
+          setporte(response.data.porte)
+          setdescricao_tipo_de_logradouro(response.data.descricao_tipo_de_logradouro)
+          setlogradouro(response.data.logradouro)
+          setbairro(response.data.bairro)
+          setmunicipio(response.data.municipio)
+          setcep(response.data.cep)
+          setddd_telefone_1(response.data.ddd_telefone_1 ? response.data.ddd_telefone_1 : 'Não cadastrado')
+          setddd_telefone_2(response.data.ddd_telefone_2 ? response.data.ddd_telefone_2 : 'Não cadastrado')
+          setdata_inicio_atividade(response.data.data_inicio_atividade)
+          setdata_exclusao_do_mei(response.data.data_exclusao_do_mei ? response.data.data_exclusao_do_mei : 'CNPJ ATIVO')
+        })
     }
 
-
   }
+
 
 
   const Container__article = styled.article`
