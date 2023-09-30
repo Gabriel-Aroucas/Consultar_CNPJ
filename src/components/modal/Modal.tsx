@@ -42,9 +42,9 @@ const StyleModal = styled.section`
         margin:10px 0;
     }
 
-    @media screen and ( max-width:700px){
-        width: 100%;
-        min-height: 100vh;
+    @media only screen and ( max-width:700px){
+        width: 100vw;
+        
     }
 `
 const Modal = ({
@@ -55,10 +55,10 @@ const Modal = ({
 
     const close_modal = () => {
         const container = document.querySelector(".containerModal") as HTMLElement
-        container.style.opacity='0';
-        container.style.transition='1s'
+        container.style.opacity = '0';
+        container.style.transition = '1s'
         setTimeout(() => {
-        container.style.display='none'
+            container.style.display = 'none'
         }, 1000);
 
     }

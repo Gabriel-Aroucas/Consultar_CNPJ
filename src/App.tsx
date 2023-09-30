@@ -74,6 +74,14 @@ const App = () => {
     input,button{
       padding: 1rem 2rem;
     }
+    
+    @media only screen and (max-width:700px){
+      input{
+        width:80vw
+      }button{
+        margin:1rem 0
+      }
+    }
   `
   const Container__text = styled.div`
     text-align: center;
@@ -90,6 +98,12 @@ const App = () => {
       opacity: 0.6;
     }
 
+    @media only screen and (max-width:700px){
+      h1{
+        width:80%;
+        margin: 0 auto;
+      }
+    }
   `
   return (
     <>
