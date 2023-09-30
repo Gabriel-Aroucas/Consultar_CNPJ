@@ -44,7 +44,7 @@ const StyleModal = styled.section`
 
     @media only screen and ( max-width:700px){
         width: 100vw;
-        
+        height: 100vh;
     }
 `
 const Modal = ({
