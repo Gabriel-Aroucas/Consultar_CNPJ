@@ -110,7 +110,7 @@ const App = () => {
       <section className="container">
         <Container__text>
           <h1>Consulte todas as informações do seu CNPJ de forma gratuíta</h1>
-          <p>Aqui no cQuery você pode consultar a situação do seu CNPJ e verificar se seus dados estão desatualizados ou em sectionergência. </p>
+          <p>Aqui no cQuery você pode consultar a situação do seu CNPJ e verificar se seus dados estão desatualizados ou em urgência. </p>
           <p>Esteja você no controle dos seus dados !</p>
         </Container__text>
         <Container__article>
