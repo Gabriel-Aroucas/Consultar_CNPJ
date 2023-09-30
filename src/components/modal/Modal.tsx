@@ -45,6 +45,12 @@ const StyleModal = styled.section`
     @media only screen and ( max-width:700px){
         width: 100vw;
         height: 100vh;
+        top: 0;
+        left: 0;
+        transform: translate(0);
+        .close_icon{
+            font-size: 3rem;
+        }
     }
 `
 const Modal = ({
