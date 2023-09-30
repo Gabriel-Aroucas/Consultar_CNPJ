@@ -41,6 +41,11 @@ const StyleModal = styled.section`
     article{
         margin:10px 0;
     }
+
+    @media screen and ( max-width:700px){
+        width: 100%;
+        min-height: 100vh;
+    }
 `
 const Modal = ({
     nome_fantasia, razao_social, cnae_fiscal_descricao, descricao_situacao_cadastral,
