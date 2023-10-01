@@ -91,15 +91,17 @@ const App = () => {
     text-align: center;
     margin:1rem 0;
     h1{
-      font-size: 3rem;
+      font-size: 2rem;
       color: #e3e3e3;
       font-family: 'bebas neue';
+      padding: 1rem 0;
     }
     p{
-      width: 50%;
+      width: 80%;
       margin: 0 auto;
       color: #e3e3e3;
       opacity: 0.6;
+      font-size:10px;
     }
 
     @media only screen and (max-width:700px){
