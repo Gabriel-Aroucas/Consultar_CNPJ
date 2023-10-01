@@ -29,7 +29,8 @@ const StyleModal = styled.section`
     height: 80vh;
     transform: translate(-50%,-50%);
     text-align: center;
-    background-color: #eaeaea;
+    background-color: #176B87;
+    color: #eaeaea;
     padding: 1rem;
     overflow: scroll;
     .close_icon{
