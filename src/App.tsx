@@ -63,6 +63,10 @@ const App = () => {
           container.style.display = 'grid';
           container.style.opacity = '1';
         })
+        .catch((e)=>{
+          console.log(e.response.status)
+          e.response.status ? alert('CNPJ Não encontrado') :'';
+        })
     }
 
   }
