@@ -44,12 +44,13 @@ const StyleModal = styled.section`
 
     @media only screen and ( max-width:700px){
         width: 100vw;
-        height: 100vh;
-        top: 0;
+        height: 80vh;
+        top: 50%;
         left: 0;
-        transform: translate(0);
+        transform: translateY(-50%);
+        border-radius: 5px;
         .close_icon{
-            font-size: 3rem;
+            font-size: 1rem;
         }
     }
 `
