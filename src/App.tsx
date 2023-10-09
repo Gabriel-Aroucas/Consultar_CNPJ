@@ -24,7 +24,6 @@ const App = () => {
 
   const consulta = () => {
 
-
     const Get_Input__QueryBox = document.querySelector("#queryBox") as HTMLInputElement;
     const Input__QueryBox = Get_Input__QueryBox.value.replace(/[^0-9]/g, '');
 
@@ -43,20 +42,38 @@ const App = () => {
     } else {
       axios.get(`https://brasilapi.com.br/api/cnpj/v1/${Input__QueryBox}`)
         .then(response => {
-          setnome_fantasia(response.data.nome_fantasia ? response.data.nome_fantasia : 'Não identificado')
-          setrazao_social(response.data.razao_social ? response.data.razao_social : 'Não identificado')
-          setcnae_fiscal_descricao(response.data.cnae_fiscal_descricao)
-          setdescricao_situacao_cadastral(response.data.descricao_situacao_cadastral)
-          setporte(response.data.porte)
-          setdescricao_tipo_de_logradouro(response.data.descricao_tipo_de_logradouro)
-          setlogradouro(response.data.logradouro)
-          setbairro(response.data.bairro)
-          setmunicipio(response.data.municipio)
-          setcep(response.data.cep)
-          setddd_telefone_1(response.data.ddd_telefone_1 ? response.data.ddd_telefone_1 : 'Não cadastrado')
-          setddd_telefone_2(response.data.ddd_telefone_2 ? response.data.ddd_telefone_2 : 'Não cadastrado')
-          setdata_inicio_atividade(response.data.data_inicio_atividade)
-          setdata_exclusao_do_mei(response.data.data_exclusao_do_mei ? response.data.data_exclusao_do_mei : 'CNPJ ATIVO')
+
+          const objData = {
+            'nome_fantasia':response.data.nome_fantasia,
+            'razao_social':response.data.razao_social,
+            'cnae_fiscal':response.data.cnae_fiscal_descricao,
+            'situacao_cadastral':response.data.descricao_situacao_cadastral,
+            'porte':response.data.porte || "Não Informado",
+            'tipo_logradouro':response.data.descricao_tipo_de_logradouro || "Não Informado",
+            'logradouro':response.data.logradouro || "Não Informado",
+            'bairro':response.data.bairro || "Não Informado",
+            'municipio':response.data.municipio || "Não Informado",
+            'cep':response.data.cep || "Não Informado",
+            'telefone_1':response.data.ddd_telefone_1 || 'Não cadastrado',
+            'telefone_2':response.data.ddd_telefone_2 || 'Não cadastrado',
+            'inicio_atividade':response.data.data_inicio_atividade || "Não Informado",
+            'exclusao_mei':response.data.data_exclusao_do_mei || "CNPJ ATIVO",
+          }
+
+          setnome_fantasia(objData.nome_fantasia)
+          setrazao_social(objData.razao_social)
+          setcnae_fiscal_descricao(objData.cnae_fiscal)
+          setdescricao_situacao_cadastral(objData.situacao_cadastral)
+          setporte(objData.porte)
+          setdescricao_tipo_de_logradouro(objData.tipo_logradouro)
+          setlogradouro(objData.logradouro)
+          setbairro(objData.bairro)
+          setmunicipio(objData.municipio)
+          setcep(objData.cep)
+          setddd_telefone_1(objData.telefone_1)
+          setddd_telefone_2(objData.telefone_2)
+          setdata_inicio_atividade(objData.inicio_atividade)
+          setdata_exclusao_do_mei(objData.exclusao_mei)
         })
         .then(() => {
           const container = document.querySelector(".containerModal") as HTMLElement
