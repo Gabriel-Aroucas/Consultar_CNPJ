@@ -40,7 +40,6 @@ const App = () => {
   const [form_data,setForm_data] = useState<string>('default');
   const [user,setUser]=useState<number>(0);
 
-
   const query = async () => {
    await axios.get(`https://brasilapi.com.br/api/cnpj/v1/${form_data}`)
       .then((response) => {
@@ -81,14 +80,12 @@ const App = () => {
         });
       })
       .then(()=>{
-        const container = document.querySelector(
-          ".containerModal"
-        ) as HTMLElement;
+        const container = document.querySelector(".containerModal") as HTMLElement;
         container.style.display = "grid";
         container.style.opacity = "1";
       })
-      .catch((e) => {
-        e.response.status ? alert("CNPJ Não encontrado") : "";
+      .catch(() => {
+        alert("CNPJ Não encontrado") ;
       });
    };
   const Container__article = styled.article`
