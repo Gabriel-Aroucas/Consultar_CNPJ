@@ -1,5 +1,4 @@
 import "./scss/App.css";
-import QueryBox from "./components/QueryBox";
 import Button from "./components/Buttons/Buttons.tsx";
 import { styled } from "styled-components";
 import axios from "axios";
@@ -40,7 +39,8 @@ console.log('renderizou')
     data_inicio_atividade: 0,
     data_exclusao_do_mei: "",
  });
- //const [inputElement,setInputElelement] = useState();
+ 
+ //const [inputData,setInputData] = useState();
 
  const consulta = () => {
   const Get_Input__QueryBox = document.querySelector("#queryBox") as HTMLInputElement;
@@ -164,7 +164,7 @@ console.log('renderizou')
           <p>Esteja você no controle dos seus dados !</p>
         </Container__text>
         <Container__article>
-          <QueryBox />
+          <input type="tel" name="cnpj" id="queryBox" placeholder="Informe aqui o CNPJ" onChange={(e)=>{console.log(e)}} />
           <i onClick={consulta}>
             <Button />
           </i>
