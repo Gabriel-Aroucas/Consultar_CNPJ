@@ -1,12 +1,11 @@
 import "./scss/App.css";
-import Button from "./components/Buttons/Buttons.tsx";
 import { styled } from "styled-components";
 import axios from "axios";
 import { useState } from "react";
 import Modal from "./components/modal/Modal.tsx";
 const App = () => {
-console.log('renderizou')
-	interface apiTypes {
+
+  interface apiTypes {
     nome_fantasia: string;
     razao_social: string;
     cnae_fiscal_descricao: string;
@@ -21,9 +20,8 @@ console.log('renderizou')
     ddd_telefone_2: string;
     data_inicio_atividade: string;
     data_exclusao_do_mei: string;
-	}
-
- const [api_data, setApi_data] = useState<apiTypes>({
+  }
+  const [api_data, setApi_data] = useState<apiTypes>({
     nome_fantasia: "",
     razao_social: "",
     cnae_fiscal_descricao: "",
@@ -33,85 +31,66 @@ console.log('renderizou')
     logradouro: "",
     bairro: "",
     municipio: "",
-    cep: 0,
-    ddd_telefone_1: 0,
-    ddd_telefone_2: 0,
-    data_inicio_atividade: 0,
+    cep: "",
+    ddd_telefone_1: "",
+    ddd_telefone_2: "",
+    data_inicio_atividade: "",
     data_exclusao_do_mei: "",
- });
- 
- //const [inputData,setInputData] = useState();
+  });
+  const [form_data,setForm_data] = useState<string>('default');
+  const [user,setUser]=useState<number>(0);
 
- const consulta = () => {
-  const Get_Input__QueryBox = document.querySelector("#queryBox") as HTMLInputElement;
-  const Input__QueryBox = Get_Input__QueryBox.value.replace(/[^0-9]/g, "");
-			if (Input__QueryBox.length > 0 && Input__QueryBox.length < 14) {
-       const container = document.querySelector(".containerModal") as HTMLElement;
-        container.style.display = "none";
-        setTimeout(() => {
-          alert("Digite o CNPJ completo");
-         }, 200);
-    } else if (Input__QueryBox.length == 0) {
-      const container = document.querySelector(
-        ".containerModal"
-      ) as HTMLElement;
-      container.style.display = "none";
-      setTimeout(() => {
-        alert("Digite o número do CNPJ");
-      }, 200);
-    } else {
-      axios
-        .get(`https://brasilapi.com.br/api/cnpj/v1/${Input__QueryBox}`)
-        .then((response) => {
-          const objData = {
-            nome_fantasia: response.data.nome_fantasia,
-            razao_social: response.data.razao_social,
-            cnae_fiscal: response.data.cnae_fiscal_descricao,
-            situacao_cadastral: response.data.descricao_situacao_cadastral,
-            porte: response.data.porte || "Não Informado",
-            tipo_logradouro:
-              response.data.descricao_tipo_de_logradouro || "Não Informado",
-            logradouro: response.data.logradouro || "Não Informado",
-            bairro: response.data.bairro || "Não Informado",
-            municipio: response.data.municipio || "Não Informado",
-            cep: response.data.cep || "Não Informado",
-            telefone_1: response.data.ddd_telefone_1 || "Não cadastrado",
-            telefone_2: response.data.ddd_telefone_2 || "Não cadastrado",
-            inicio_atividade:
-              response.data.data_inicio_atividade || "Não Informado",
-            exclusao_mei: response.data.data_exclusao_do_mei || "CNPJ ATIVO",
-          };
-          setApi_data({
-            nome_fantasia: objData.nome_fantasia,
-            razao_social: objData.razao_social,
-            cnae_fiscal_descricao: objData.cnae_fiscal,
-            descricao_situacao_cadastral: objData.situacao_cadastral,
-            porte: objData.porte,
-            descricao_tipo_de_logradouro: objData.tipo_logradouro,
-            logradouro: objData.logradouro,
-            bairro: objData.bairro,
-            municipio: objData.municipio,
-            cep: objData.cep,
-            ddd_telefone_1: objData.telefone_1,
-            ddd_telefone_2: objData.telefone_2,
-            data_inicio_atividade: objData.inicio_atividade,
-            data_exclusao_do_mei: objData.exclusao_mei,
-          });
-									})
-        .then(() => {
-          const container = document.querySelector(
-            ".containerModal"
-          ) as HTMLElement;
-          container.style.display = "grid";
-          container.style.opacity = "1";
-        })
-        .catch((e) => {
-          console.log(e.response.status);
-          e.response.status ? alert("CNPJ Não encontrado") : "";
+
+  const query = async () => {
+   await axios.get(`https://brasilapi.com.br/api/cnpj/v1/${form_data}`)
+      .then((response) => {
+        const objData = {
+          nome_fantasia: response.data.nome_fantasia,
+          razao_social: response.data.razao_social,
+          cnae_fiscal: response.data.cnae_fiscal_descricao,
+          situacao_cadastral: response.data.descricao_situacao_cadastral,
+          porte: response.data.porte || "Não Informado",
+          tipo_logradouro:
+            response.data.descricao_tipo_de_logradouro || "Não Informado",
+          logradouro: response.data.logradouro || "Não Informado",
+          bairro: response.data.bairro || "Não Informado",
+          municipio: response.data.municipio || "Não Informado",
+          cep: response.data.cep || "Não Informado",
+          telefone_1: response.data.ddd_telefone_1 || "Não cadastrado",
+          telefone_2: response.data.ddd_telefone_2 || "Não cadastrado",
+          inicio_atividade:
+            response.data.data_inicio_atividade || "Não Informado",
+          exclusao_mei: response.data.data_exclusao_do_mei || "CNPJ ATIVO",
+        
+        };
+        setApi_data({
+          nome_fantasia: objData.nome_fantasia,
+          razao_social: objData.razao_social,
+          cnae_fiscal_descricao: objData.cnae_fiscal,
+          descricao_situacao_cadastral: objData.situacao_cadastral,
+          porte: objData.porte,
+          descricao_tipo_de_logradouro: objData.tipo_logradouro,
+          logradouro: objData.logradouro,
+          bairro: objData.bairro,
+          municipio: objData.municipio,
+          cep: objData.cep,
+          ddd_telefone_1: objData.telefone_1,
+          ddd_telefone_2: objData.telefone_2,
+          data_inicio_atividade: objData.inicio_atividade,
+          data_exclusao_do_mei: objData.exclusao_mei,
         });
-    }
-  };
-
+      })
+      .then(()=>{
+        const container = document.querySelector(
+          ".containerModal"
+        ) as HTMLElement;
+        container.style.display = "grid";
+        container.style.opacity = "1";
+      })
+      .catch((e) => {
+        e.response.status ? alert("CNPJ Não encontrado") : "";
+      });
+   };
   const Container__article = styled.article`
     text-align: center;
     input,
@@ -152,6 +131,18 @@ console.log('renderizou')
       }
     }
   `;
+
+let inputValue='default';
+if(user === 1){
+  query()
+  setUser(0)
+}
+
+const handleSubmit = () => {
+  setForm_data(inputValue.replace(/[^0-9]/g, ""))
+  setUser(1)
+  };
+
   return (
     <>
       <section className="container">
@@ -164,10 +155,21 @@ console.log('renderizou')
           <p>Esteja você no controle dos seus dados !</p>
         </Container__text>
         <Container__article>
-          <input type="tel" name="cnpj" id="queryBox" placeholder="Informe aqui o CNPJ" onChange={(e)=>{console.log(e)}} />
-          <i onClick={consulta}>
-            <Button />
-          </i>
+          <input
+            type="tel"
+            name="cnpj"
+            id="queryBox"
+            placeholder="Informe aqui o CNPJ"
+            onChange={(e)=>{inputValue= e.currentTarget.value}}
+          />
+          <button
+            type="submit"
+            onClick={() => {
+              handleSubmit();
+            }}
+          >
+            Consultar
+          </button>
         </Container__article>
 
         <Modal
@@ -190,5 +192,4 @@ console.log('renderizou')
     </>
   );
 };
-
 export default App;
