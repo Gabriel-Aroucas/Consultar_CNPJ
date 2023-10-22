@@ -134,7 +134,6 @@ if(user === 1){
   query()
   setUser(0)
 }
-
 const handleSubmit = () => {
   setForm_data(inputValue.replace(/[^0-9]/g, ""))
   setUser(1)
@@ -147,7 +146,7 @@ const handleSubmit = () => {
           <h1>Consulte todas as informações do seu CNPJ de forma gratuíta</h1>
           <p>
             Aqui no cQuery você pode consultar a situação do seu CNPJ e
-            verificar se seus dados estão desatualizados ou em urgência.{" "}
+            verificar se seus dados estão desatualizados ou em urgência.
           </p>
           <p>Esteja você no controle dos seus dados !</p>
         </Container__text>
