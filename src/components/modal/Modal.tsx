@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 
-const StyleModal = styled.section`
+const Section = styled.section`
   position: absolute;
   display: none;
   top: 50%;
@@ -124,30 +124,28 @@ const Modal = (props: any) => {
   };
 
   return (
-    <StyleModal className="containerModal">
-     
+    <Section className="containerModal">
       <div className="close_icon">
         <i onClick={handle_close}>
           <FontAwesomeIcon icon={faClose} />
         </i>
       </div>
 
-      <section>
+      <div>
         <h1>Resultados da busca</h1>
         {
           api_Names.map((names: any) => {
           const maped_names = names.toUpperCase().replace("_", " ").replace("_", " ").replace("_", " ");
           const maped_values = convert_api_names_to_numbers[names];
           return (
-            <article>
-              <h2>{maped_names}</h2>
-              <p>{maped_values}</p>
+            <article key={names}>
+              <h2 key={maped_names}>{maped_names}</h2>
+              <p key={maped_values}>{maped_values}</p>
             </article>
           );
         })}
-      </section>
-
-    </StyleModal>
+      </div>
+    </Section>
   );
 };
 
