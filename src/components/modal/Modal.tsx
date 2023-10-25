@@ -29,36 +29,41 @@ const Section = styled.section`
     color: rgb(0, 0, 0, 0.7);
   }
   .close_icon {
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    cursor: pointer;
+    text-align: end;
   }
   article {
     margin: 10px 0;
     border: 1px solid rgb(0, 0, 0, 0.3);
   }
-  .api_dinamic {
+  .api_Data {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  }
-  .api_dinamic_names {
-    border-bottom: 1px solid rgb(0, 0, 0, 0.3);
-    border-left: 1px solid rgb(0, 0, 0, 0.3);
-    border-right: 1px solid rgb(0, 0, 0, 0.3);
   }
 
   @media only screen and (max-width: 700px) {
     width: 100vw;
     height: 80vh;
     top: 50%;
-    left: 0;
+    left:0;
     transform: translateY(-50%);
     border-radius: 5px;
-    .close_icon {
-      font-size: 1rem;
+    h1{
+      font-size: 7vw;
+      width: 90vw;
+
     }
+    h2{
+      font-size: 6.5vw;
+    }
+    article{
+      width: 90vw;
+    }
+    .close_icon{
+      width: 90vw;
+      text-align: center;
+    }
+    
   }
 `;
 
@@ -124,15 +129,18 @@ const Modal = (props: any) => {
   };
 
   return (
-    <Section className="containerModal">
+    <Section className="container_Modal">
       <div className="close_icon">
         <i onClick={handle_close}>
           <FontAwesomeIcon icon={faClose} />
         </i>
       </div>
 
-      <div>
+      <div className="modal_title">
         <h1>Resultados da busca</h1>
+      </div>
+      
+      <div className="api_Data">
         {
           api_Names.map((names: any) => {
           const maped_names = names.toUpperCase().replace("_", " ").replace("_", " ").replace("_", " ");
@@ -152,7 +160,7 @@ const Modal = (props: any) => {
 export default Modal;
 
 const handle_close = () => {
-  const container = document.querySelector(".containerModal") as HTMLElement;
+  const container = document.querySelector(".container_Modal") as HTMLElement;
   container.style.opacity = "0";
   container.style.transition = "1s";
   setTimeout(() => {
