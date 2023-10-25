@@ -139,6 +139,18 @@ const Modal = (props: any) => {
     descricao_identificador_matriz_filial: api_Values[47] || unknown_api_name,
   };
 
+  const business_Name_On_Title = ()=>{
+    if(convert_api_names_to_numbers["nome_fantasia"] != unknown_api_name){
+      return(
+        <>{convert_api_names_to_numbers["nome_fantasia"]}</>
+      )
+  }else{
+    return(
+      <>{convert_api_names_to_numbers["razao_social"]}</>
+    )
+    
+  }
+  }
   return (
     <Section className="container_Modal">
       <div className="close_icon">
@@ -149,7 +161,7 @@ const Modal = (props: any) => {
 
       <div className="modal_title">
         <h1>Resultados da busca</h1>
-        <p>{convert_api_names_to_numbers["nome_fantasia"]}</p>
+        <p>{business_Name_On_Title()}</p>
       </div>
       
       <div className="api_Data">
