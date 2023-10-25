@@ -6,7 +6,7 @@ import Modal from "./components/modal/Modal.tsx";
 
 const App = () => {
   const [form_data, setForm_data] = useState<string>("default");
-  const [user, setUser] = useState<number>(0);
+  const [first_Acess, set_first_Acess] = useState<boolean>(false);
   const [api_Names,set_Api_Names] = useState(['']);
   const [api_Values,set_Api_Value] = useState<unknown>(['']);
 
@@ -70,14 +70,14 @@ const App = () => {
     }
   `;
 
-  let inputValue = "default";
-  if (user === 1) {
+  let input_Value = "default";
+  if (first_Acess === true) {
     query();
-    setUser(0);
+    set_first_Acess(false);
   }
-  const handleSubmit = () => {
-    setForm_data(inputValue.replace(/[^0-9]/g, ""));
-    setUser(1);
+  const handle_Submit = () => {
+    setForm_data(input_Value.replace(/[^0-9]/g, ""));
+    set_first_Acess(true);
   };
 
   return (
@@ -90,10 +90,10 @@ const App = () => {
        </Div>
 
         <Article>
-          <input type="tel" name="cnpj" id="queryBox" placeholder="Informe aqui o CNPJ" onChange={(e) => { inputValue = e.currentTarget.value; }}/>
-          <button type="submit" onClick={() => { handleSubmit() }}> Consultar </button>
+          <input type="tel" name="cnpj" id="queryBox" placeholder="Informe aqui o CNPJ" onChange={(each_letter) => { input_Value = each_letter.currentTarget.value; }}/>
+          <button type="submit" onClick={() => { handle_Submit() }}> Consultar </button>
         </Article>
-        
+
         <Modal api_Names={api_Names} api_Values={api_Values} />
       </section>
     </>
