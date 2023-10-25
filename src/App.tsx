@@ -39,8 +39,8 @@ const App = () => {
   //});
   const [form_data, setForm_data] = useState<string>("default");
   const [user, setUser] = useState<number>(0);
-  const [api_Titles,set_Api_Titles] = useState(['']);
-  const [api_Value,set_Api_Value] = useState<unknown>(['']);
+  const [api_Names,set_Api_Names] = useState(['']);
+  const [api_Values,set_Api_Value] = useState<unknown>(['']);
 
   const query = async () => {
     await axios
@@ -49,7 +49,7 @@ const App = () => {
         const object_Names = Object.keys(response.data)
         const object_Value = Object.values(response.data);
         //const array = [object_Names,object_Value];
-        set_Api_Titles(object_Names)
+        set_Api_Names(object_Names)
         set_Api_Value(object_Value)
       
         })
@@ -145,7 +145,7 @@ const App = () => {
             Consultar
           </button>
         </Container__article>
-        <Modal content={api_Titles} value = {api_Value} />
+        <Modal api_Titles={api_Names} api_Values={api_Values} />
       </section>
     </>
   );

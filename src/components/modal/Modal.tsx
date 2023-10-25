@@ -17,7 +17,7 @@ const StyleModal = styled.section`
   overflow: scroll;
   box-shadow: #141414 8px 8px 60px;
   border-radius: 13px;
-  h1{
+  h1 {
     font-size: 2rem;
     color: rgb(0, 0, 0, 0.7);
   }
@@ -63,92 +63,97 @@ const StyleModal = styled.section`
 `;
 
 const Modal = (props: any) => {
+  const currency = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
 
-  const formater = new Intl.NumberFormat('pt-BR', {style:'currency', currency:'BRL'})
-  const content=  props.content;
-  const value = props.value;
-  const unknown = 'Não identificado'
+  const api_Names = props.api_Names;
+  const api_Values = props.api_Values;
 
-  const enumered_api:any = {
-    'uf':value[0] || unknown,
-    'cep':value[1] || unknown,
-    'qsa':"Em breve",
-    'cnpj':value[3] || unknown,
-    'pais':value[4] || unknown,
-    'email':value[5] || unknown,
-    'porte':value[6] || unknown,
-    'bairro':value[7] || unknown,
-    'numero':value[8] || unknown,
-    'ddd_fax':value[9] || unknown,
-    'municipio':value[10] || unknown,
-    'logradouro':value[11] || unknown,
-    'cnae_fiscal':value[12] || unknown,
-    'codigo_pais':value[13] || unknown,
-    'complemento':value[14] || unknown,
-    'codigo_porte':value[15] || unknown,
-    'razao_social':value[16] || unknown,
-    'nome_fantasia':value[17] || unknown,
-    'capital_social':formater.format(value[18]) || unknown,
-    'ddd_telefone_1':value[19] || unknown,
-    'ddd_telefone_2':value[20] || unknown,
-    'opcao_pelo_mei':value[21] == true ? 'Sim' : unknown,
-    'descricao_porte':value[22] || unknown,
-    'codigo_municipio':value[23] || unknown,
-    'cnaes_secundarios':"Em breve",
-    'natureza_juridica':value[25] || unknown,
-    'situacao_especial':value[26] || unknown,
-    'opcao_pelo_simples':value[27] == true ? 'Sim' : unknown,
-    'situacao_cadastral':value[28] || unknown,
-    'data_opcao_pelo_mei':value[29] || unknown,
-    'data_exclusao_do_mei':value[30] || unknown,
-    'cnae_fiscal_descricao':value[31] || unknown,
-    'codigo_municipio_ibge':value[32] || unknown,
-    'data_inicio_atividade':value[33] || unknown,
-    'data_situacao_especial':value[34] || unknown,
-    'data_opcao_pelo_simples':value[35] || unknown,
-    'data_situacao_cadastral':value[36] || unknown,
-    'nome_cidade_no_exterior':value[37] || unknown,
-    'codigo_natureza_juridica':value[38] || unknown,
-    'data_exclusao_do_simples':value[39] || unknown,
-    'motivo_situacao_cadastral':value[40] || unknown,
-    'ente_federativo_responsavel':value[41] || unknown,
-    'identificador_matriz_filial':value[42] || unknown,
-    'qualificacao_do_responsavel':value[43] || unknown,
-    'descricao_situacao_cadastral':value[44] || unknown,
-    'descricao_tipo_de_logradouro':value[45] || unknown,
-    'descricao_motivo_situacao_cadastral':value[46] || unknown,
-    'descricao_identificador_matriz_filial':value[47] || unknown,
-  }
-
+  const unknown = "Não identificado";
+  const convert_api_names_to_numbers: any = {
+    uf: api_Values[0] || unknown,
+    cep: api_Values[1] || unknown,
+    qsa: "Em breve",
+    cnpj: api_Values[3] || unknown,
+    pais: api_Values[4] || unknown,
+    email: api_Values[5] || unknown,
+    porte: api_Values[6] || unknown,
+    bairro: api_Values[7] || unknown,
+    numero: api_Values[8] || unknown,
+    ddd_fax: api_Values[9] || unknown,
+    municipio: api_Values[10] || unknown,
+    logradouro: api_Values[11] || unknown,
+    cnae_fiscal: api_Values[12] || unknown,
+    codigo_pais: api_Values[13] || unknown,
+    complemento: api_Values[14] || unknown,
+    codigo_porte: api_Values[15] || unknown,
+    razao_social: api_Values[16] || unknown,
+    nome_fantasia: api_Values[17] || unknown,
+    capital_social: currency.format(api_Values[18]) || unknown,
+    ddd_telefone_1: api_Values[19] || unknown,
+    ddd_telefone_2: api_Values[20] || unknown,
+    opcao_pelo_mei: api_Values[21] == true ? "Sim" : unknown,
+    descricao_porte: api_Values[22] || unknown,
+    codigo_municipio: api_Values[23] || unknown,
+    cnaes_secundarios: "Em breve",
+    natureza_juridica: api_Values[25] || unknown,
+    situacao_especial: api_Values[26] || unknown,
+    opcao_pelo_simples: api_Values[27] == true ? "Sim" : unknown,
+    situacao_cadastral: api_Values[28] || unknown,
+    data_opcao_pelo_mei: api_Values[29] || unknown,
+    data_exclusao_do_mei: api_Values[30] || unknown,
+    cnae_fiscal_descricao: api_Values[31] || unknown,
+    codigo_municipio_ibge: api_Values[32] || unknown,
+    data_inicio_atividade: api_Values[33] || unknown,
+    data_situacao_especial: api_Values[34] || unknown,
+    data_opcao_pelo_simples: api_Values[35] || unknown,
+    data_situacao_cadastral: api_Values[36] || unknown,
+    nome_cidade_no_exterior: api_Values[37] || unknown,
+    codigo_natureza_juridica: api_Values[38] || unknown,
+    data_exclusao_do_simples: api_Values[39] || unknown,
+    motivo_situacao_cadastral: api_Values[40] || unknown,
+    ente_federativo_responsavel: api_Values[41] || unknown,
+    identificador_matriz_filial: api_Values[42] || unknown,
+    qualificacao_do_responsavel: api_Values[43] || unknown,
+    descricao_situacao_cadastral: api_Values[44] || unknown,
+    descricao_tipo_de_logradouro: api_Values[45] || unknown,
+    descricao_motivo_situacao_cadastral: api_Values[46] || unknown,
+    descricao_identificador_matriz_filial: api_Values[47] || unknown,
+  };
 
   return (
     <StyleModal className="containerModal">
+     
       <div className="close_icon">
-        <i onClick={close_modal}>
+        <i onClick={handle_close}>
           <FontAwesomeIcon icon={faClose} />
         </i>
       </div>
-      <section className="api_dinamic">
-      <h1>Resultados da busca</h1>
 
-       {
-        content.map((e:any) => {
-          return(
+      <section>
+        <h1>Resultados da busca</h1>
+        {
+          api_Names.map((names: any) => {
+          const maped_names = names.toUpperCase().replace("_", " ").replace("_", " ").replace("_", " ");
+          const maped_values = convert_api_names_to_numbers[names];
+          return (
             <article>
-              <h2>{e.toUpperCase().replace("_"," ").replace("_"," ").replace("_"," ")}</h2>
-              <p>{enumered_api[e]}</p>
+              <h2>{maped_names}</h2>
+              <p>{maped_values}</p>
             </article>
-          )
-        })
-       }
+          );
+        })}
       </section>
+
     </StyleModal>
   );
 };
 
 export default Modal;
 
-const close_modal = () => {
+const handle_close = () => {
   const container = document.querySelector(".containerModal") as HTMLElement;
   container.style.opacity = "0";
   container.style.transition = "1s";
