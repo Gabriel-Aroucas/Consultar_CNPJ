@@ -5,20 +5,19 @@ import { useState } from "react";
 import Modal from "./components/modal/Modal.tsx";
 
 const App = () => {
-  const [form_data, setForm_data] = useState<string>("default");
+  const [user_Data, set_User_Data] = useState<string>("default");
   const [first_Acess, set_first_Acess] = useState<boolean>(false);
   const [api_Names,set_Api_Names] = useState(['']);
   const [api_Values,set_Api_Value] = useState<unknown>(['']);
 
   const query = async () => {
     await axios
-      .get(`https://brasilapi.com.br/api/cnpj/v1/${form_data}`)
+      .get(`https://brasilapi.com.br/api/cnpj/v1/${user_Data}`)
       .then((response) => {
         const object_Names = Object.keys(response.data)
         const object_Value = Object.values(response.data);
         set_Api_Names(object_Names)
         set_Api_Value(object_Value)
-      
         })
       .then(() => {
         const container = document.querySelector(".containerModal") as HTMLElement;
@@ -29,6 +28,7 @@ const App = () => {
         alert("CNPJ Não encontrado");
       });
   };
+  
   const Article = styled.article`
     text-align: center;
     input,
@@ -76,7 +76,7 @@ const App = () => {
     set_first_Acess(false);
   }
   const handle_Submit = () => {
-    setForm_data(input_Value.replace(/[^0-9]/g, ""));
+    set_User_Data(input_Value.replace(/[^0-9]/g, ""));
     set_first_Acess(true);
   };
 
