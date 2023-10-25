@@ -33,14 +33,21 @@ const Section = styled.section`
   }
   article {
     margin: 10px 0;
-    border: 1px solid rgb(0, 0, 0, 0.3);
+    border: 1px outset rgb(0, 0, 0, 0.3);
   }
   .api_Data {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   }
-
+  .modal_title{
+      p{
+        font-size:5vw;
+        color: rgb(5, 59, 80, 0.8);
+        padding: 1rem;
+        border: 1px dashed rgb(5, 59, 80, 0.8);
+      }
+    }
   @media only screen and (max-width: 700px) {
     width: 100vw;
     height: 80vh;
@@ -49,12 +56,16 @@ const Section = styled.section`
     transform: translateY(-50%);
     border-radius: 5px;
     h1{
-      font-size: 7vw;
+      font-size: 4vw;
       width: 90vw;
 
     }
     h2{
       font-size: 6.5vw;
+    }
+    p{
+      width: 90vw;
+      font-size: 5vw;
     }
     article{
       width: 90vw;
@@ -64,6 +75,7 @@ const Section = styled.section`
       text-align: center;
     }
     
+   
   }
 `;
 
@@ -75,7 +87,6 @@ const Modal = (props: any) => {
 
   const api_Names = props.api_Names;
   const api_Values = props.api_Values;
-
   const unknown_api_name = "Não identificado";
   const convert_api_names_to_numbers: any = {
     uf: api_Values[0] || unknown_api_name,
@@ -138,6 +149,7 @@ const Modal = (props: any) => {
 
       <div className="modal_title">
         <h1>Resultados da busca</h1>
+        <p>{convert_api_names_to_numbers["nome_fantasia"]}</p>
       </div>
       
       <div className="api_Data">
