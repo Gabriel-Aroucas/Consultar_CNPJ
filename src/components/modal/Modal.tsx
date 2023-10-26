@@ -74,8 +74,13 @@ const Section = styled.section`
       width: 90vw;
       text-align: center;
     }
-    
-   
+  }
+  @media only screen and (max-width: 500px) {
+    .modal_title{
+      p{
+        font-size:15vw;
+      }
+    }
   }
 `;
 
