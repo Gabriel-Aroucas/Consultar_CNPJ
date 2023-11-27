@@ -3,14 +3,17 @@ import { styled } from "styled-components";
 import axios from "axios";
 import { useState } from "react";
 import Modal from "./components/modal/Modal.tsx";
+import Loader from "./components/loader/Loader.tsx";
 
 const App = () => {
   const [user_Data, set_User_Data] = useState<string>("default");
   const [first_Acess, set_first_Acess] = useState<boolean>(false);
   const [api_Names,set_Api_Names] = useState(['']);
   const [api_Values,set_Api_Value] = useState<unknown>(['']);
+  const [remove_loader, set_remove_loader] = useState(true);
 
   const query = async () => {
+    set_remove_loader(false)
     await axios
       .get(`https://brasilapi.com.br/api/cnpj/v1/${user_Data}`)
       .then((response) => {
@@ -23,9 +26,12 @@ const App = () => {
         const container = document.querySelector(".container_Modal") as HTMLElement;
         container.style.display = "grid";
         container.style.opacity = "1";
+        set_remove_loader(true)
       })
       .catch(() => {
         alert("CNPJ Não encontrado");
+        set_remove_loader(true)
+
       });
   };
   
@@ -93,8 +99,8 @@ const App = () => {
           <input type="tel" name="cnpj" id="queryBox" placeholder="Informe aqui o CNPJ" onChange={(each_letter) => { input_Value = each_letter.currentTarget.value; }}/>
           <button type="submit" onClick={() => { handle_Submit() }}> Consultar </button>
         </Article>
-
         <Modal api_Names={api_Names} api_Values={api_Values} />
+        {!remove_loader && <Loader/>}
       </section>
     </>
   );
